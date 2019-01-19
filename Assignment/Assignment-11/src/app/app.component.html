@@ -1,0 +1,102 @@
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>About Company Page</h2>
+      <h4>Lorem ipsum..</h4>      
+      <p>Lorem ipsum..</p>
+      <button class="btn btn-default btn-lg">Get in Touch</button>
+    </div>
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-signal logo"></span>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-12">
+          <form >
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+      </div>
+  </div>
+</div>
+-->
+<div class="container">
+    <h1>Marvellous Infosystems Admission Form</h1>
+    <h2>Demonstration of Full form validation in Template Driven Form</h2>
+    <form #myForm="ngForm">
+      
+      <br>
+      {{"Validity status of whole form - "}}
+      {{myForm.form.valid}}
+      <br>
+      <br>
+  
+      <!-- Display error message without condition-->
+      <div class="row form-group">
+          <div class="form-group">
+              <div class="col-md-12">
+        <label>First Name</label>
+        <div class="col-sm-10">
+        <input type="text" #name="ngModel" required class="form-control" [class.is-invalid]="name.invalid && name.touched" name="fname" pattern="[a-zA-Z ]*$" ngModel>
+        <small [class.d-none]="name.valid || name.untouched">Name is required</small>
+      </div></div></div>
+      <div class="form-group"></div>
+      <div class="form-group">
+          <label>Last Name</label>
+          <input type="text"  class="form-control" name="lname" ngModel>
+        </div>
+        </div>
+      <!-- Display error message if data is invalid-->
+      <div class="form-group">
+        <div class="col-md-12">
+          <label>Email Address</label>
+          <input type="email" #email="ngModel" required [class.is-invalid] = "email.invalid && email.touched" class="form-control " name="eaddress" ngModel>
+          <small [class.d-none]="email.valid || email.untouched">Email ID required</small>
+        </div>
+      </div>
+      <!-- Display error message if mobile number is less than or greater that 10 digits-->      
+        <div class="form-group">
+            <div class="col-md-12">
+            <label>Mobile number</label>
+            <input type="tel" class="form-control" name="mobile" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" ngModel>
+          <small class="text-danger" [class.d-none]="phone.valid">Phone number must be 10 digit</small>
+          </div>
+        </div>
+          <div class="form-group">
+              <div class="col-md-12">
+              <label>City</label>
+              <input type="text"  class="form-control" name="lcity" ngModel required #city="ngModel" pattern="^[a-zA-Z]{4,}$" [class.is-invalid]="city.invalid && city.touched">
+              <small class="text-danger" [class.d-none]="phone.valid">City contains minimum 4 alphabets.</small> </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                <label>State</label>
+              <select class="custom-select" name="batch" ngModel>
+                <option selected>Select</option>
+                <option *ngFor="let value of batches">{{value}}</option>     
+              </select>
+              </div>  </div>
+              <div class="form-group">
+                  <div class="col-md-12">
+                  <label>Zip</label>
+                  <input type="text" class="form-control" name="zip" #zip="ngModel" pattern="^\d{5}$" [class.is-invalid]="zip.invalid && zip.touched" ngModel>
+                <small class="text-danger" [class.d-none]="zip.valid">zip must be 5 digit</small>
+                </div>
+              </div>
+  
+            <!--Disable submit button if form is invalid-->
+            <button [disabled]="myForm.form.invalid" class="btn btn-primary" type="submit">Submit Form</button>
+    </form>   
+  <div>
+  
